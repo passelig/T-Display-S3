@@ -12,9 +12,7 @@ DHT dht(DHTpin, DHT22);
 void setup() {
   tft.init();
   dht.begin();
-  //pinMode(LCDpin, OUTPUT);
-  //pinMode(DHTpin, INPUT); 
-  //digitalWrite(LCDpin, HIGH);
+  
   tft.setRotation(1);
   tft.setSwapBytes(true);
   tft.fillScreen(TFT_WHITE);
@@ -26,7 +24,7 @@ void setup() {
   sprite.setTextDatum(4);
 }
 
-//progress bar variables
+//temperature bar variables
 int progress=0;
 int w=120;
 int h=18;
@@ -36,9 +34,7 @@ int blocks=0;
 
 void loop() {
  sprite.fillSprite(TFT_WHITE);
- //sprite.setFreeFont(&Orbitron_Light_24);
  float temperature = dht.readTemperature();
- //sprite.drawString("Temperature:",75,16);
  sprite.setFreeFont(&Orbitron_Light_32);
  sprite.drawString(String(temperature),75,54);
 
@@ -46,17 +42,15 @@ void loop() {
  if(progress==101)
  progress=0;
 
-  blocks = temperature - 20;
+ blocks = temperature - 20;
  sprite.drawRoundRect(x,y,w,h,3,TFT_BLACK);
  for(int i=0;i<blocks;i++)
  sprite.fillRect(i*5+(x+2)+(i*1),y+4,5,10,TFT_BLACK);
- //sprite.drawRect(10,124,60,22,TFT_BLACK);
- //sprite.drawRect(76,124,60,22,TFT_BLACK);
- //sprite.drawString("OK",40,134,2);
-sprite.setFreeFont(&Orbitron_Light_24);
+ sprite.setFreeFont(&Orbitron_Light_24);
  sprite.drawString("Temperature",75,16,4);
  sprite.setTextFont(0);
- sprite.drawString("Installation almost done!!",80,160);
+ sprite.drawString("Reading temperature ",80,150);
+ sprite.drawString("from DHT22 on pin 16 ",80,160);
  sprite.pushSprite(0,0);
 delay(100);
 }
