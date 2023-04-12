@@ -4,6 +4,7 @@
 
 TFT_eSPI tft= TFT_eSPI();
 TFT_eSprite sprite = TFT_eSprite(&tft);
+int loopCounter = 0;
 
 void setup() {
   tft.init();
@@ -21,6 +22,8 @@ void loop() {
  sprite.setFreeFont(&Orbitron_Light_24);
  sprite.drawString("Some long string 10,10",10,10);
  sprite.drawString("Short 10,44",10,44); 
+ sprite.drawString("Loop counter " + String(loopCounter),10,77);
  sprite.pushSprite(0,0);
- delay(100);
+ delay(500);
+ loopCounter +=1;
 }
