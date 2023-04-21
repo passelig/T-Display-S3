@@ -23,8 +23,19 @@ unsigned long timerDelay = 5000;
 String myIp = "";
 
 void setup() {
-  Serial.begin(115200);
+  tft.init();
+  tft.setRotation(1);
+  tft.setSwapBytes(true);
   
+  sprite.createSprite(320,170);  
+  sprite.fillSprite(TFT_WHITE);
+  sprite.setTextColor(TFT_BLACK,TFT_WHITE);
+  sprite.setFreeFont(&Orbitron_Light_24);
+  sprite.drawString("NO WIFI, yet..",60,44);
+  sprite.drawString("ssid: " + String(ssid),60,80);  
+  sprite.pushSprite(0,0);  
+  
+  Serial.begin(115200);
   WiFi.begin(ssid, password);
   Serial.println("Connecting");
   while(WiFi.status() != WL_CONNECTED) {
@@ -38,12 +49,7 @@ void setup() {
  
   Serial.println("it will take 5 seconds before publishing the first reading.");
 
-  tft.init();
-  tft.setRotation(1);
-  tft.setSwapBytes(true);
-  tft.fillScreen(TFT_WHITE);
-  sprite.createSprite(320,170);
-  sprite.setTextColor(TFT_BLACK,TFT_WHITE);
+ 
 }
 
 void loop() {
