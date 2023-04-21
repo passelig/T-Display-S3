@@ -1,4 +1,4 @@
-#include "install.h"
+#include "wiring_detail.h"
 #include "TFT_eSPI.h"
 #include <DHT.h>
 
@@ -16,7 +16,7 @@ void setup() {
   tft.setRotation(1);
   tft.setSwapBytes(true);
   tft.fillScreen(TFT_WHITE);
-  tft.pushImage(106,0,214,170,install);
+  tft.pushImage(160,0,161,170,wiring_detail);
 
   sprite.createSprite(146,170);
  
