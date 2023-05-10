@@ -31,11 +31,8 @@ int humid = 0;
 
 InfluxDBClient client(INFLUXDB_URL, INFLUXDB_ORG, INFLUXDB_BUCKET, INFLUXDB_TOKEN, InfluxDbCloud2CACert);                 //InfluxDB client instance with preconfigured InfluxCloud certificate
 
-<<<<<<< HEAD
+
 Point sensor("gunnarUke12");                                            //Data point
-=======
-Point sensor("myName");                                            //Data point
->>>>>>> d96ef7b30d2da7df1b0381538f9d3dabf5a08fd3
 
 void setup() 
 {
