@@ -7,11 +7,11 @@ int loopCounter = 0;
 #include <WiFi.h>
 #include <HTTPClient.h>
 
-const char* ssid = "Gunnar";
-const char* password = "Hemmelig";
+const char* ssid = "CP-S_Norway-2GHz";
+const char* password = "robotino";
 
 //Your Domain name with URL path or IP address with path
-String serverName = "http://httpbin.org/get";
+String serverName = "http://172.21.11.90/fcgi-bin/?{%22TYPE%22:%22getBatteryInfo%22,%22A%22:0}";
 
 // the following variables are unsigned longs because the time, measured in
 // milliseconds, will quickly become a bigger number than can be stored in an int.
