@@ -5,7 +5,7 @@
 TFT_eSPI lcd = TFT_eSPI();
 TFT_eSprite sprite = TFT_eSprite(&lcd);
 #define numOfValues 20
-float values[numOfValues]={0};
+float measurmentPoints[numOfValues]={0};
 int gw=294;
 int gh=102;
 int gx=20;
@@ -35,7 +35,7 @@ void setup(void)
   sprite.createSprite(320, 170);
   sprite.setTextDatum(3);
   sprite.setSwapBytes(true);
-  values[numOfValues-1]=yStartTemp;
+  measurmentPoints[numOfValues-1]=yStartTemp;
   analogReadResolution(10);
 }
 
@@ -49,9 +49,9 @@ void loop()
   }
   
  for(int i=0; i<numOfValues ;i++){
-  values[i]=values[i+1];
+  measurmentPoints[i]=measurmentPoints[i+1];
  }
- values[numOfValues-1]=current;
+ measurmentPoints[numOfValues-1]=current;
 
   sprite.fillSprite(TFT_BLACK);
   sprite.setTextColor(TFT_WHITE,blue);
@@ -74,7 +74,7 @@ void loop()
   
   // Draw the graph  
   for(int i=0;i<numOfValues;i++){
-    sprite.drawLine(gx+(i*17),gy-(values[i]-yStartTemp)*pixelsPerDegree,gx+((i+1)*17),gy-(values[i+1]-yStartTemp)*pixelsPerDegree,TFT_RED);
+    sprite.drawLine(gx+(i*17),gy-(measurmentPoints[i]-yStartTemp)*pixelsPerDegree,gx+((i+1)*17),gy-(measurmentPoints[i+1]-yStartTemp)*pixelsPerDegree,TFT_RED);
   }
   sprite.pushSprite(0,0);
   delay(1000);
