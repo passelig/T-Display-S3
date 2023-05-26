@@ -4,7 +4,7 @@
 
 TFT_eSPI lcd = TFT_eSPI();
 TFT_eSprite sprite = TFT_eSprite(&lcd);
-#define numOfValues 20
+#define numOfValues 145
 float measurmentPoints[numOfValues]={0};
 int gw=294;
 int gh=102;
@@ -22,9 +22,6 @@ int yStartTemp = 18;
 #define black 0x0000
 DHT dht(16,DHT22);    
 
-
-
-
 void setup(void)
 {
   dht.begin();  
@@ -38,6 +35,10 @@ void setup(void)
   sprite.setSwapBytes(true);
   measurmentPoints[numOfValues-1]=yStartTemp;
   analogReadResolution(10);
+  current = dht.readTemperature(); 
+  for(int i=0; i<numOfValues ;i++){
+    measurmentPoints[i]=current;
+  }
 }
 
 
@@ -57,7 +58,7 @@ void loop()
   sprite.fillSprite(TFT_WHITE);
   sprite.setTextColor(TFT_WHITE,blue);
   sprite.fillRoundRect(6,5,250,35,4,blue);
-  sprite.drawString("Temperature " + String(current),10,24,4);
+  sprite.drawString("Temperature " + String(current),14,24,4);
   sprite.setFreeFont();
 
   // Vertical grid lines
@@ -65,8 +66,8 @@ void loop()
    sprite.drawLine(gx+(i*17),gy,gx+(i*17),gy-gh,grey);
   }
   // Horizontal grid lines
-sprite.setTextColor(TFT_BLACK,TFT_WHITE);  
-  for(int i=1;i<6;i++){
+  sprite.setTextColor(TFT_BLACK,TFT_WHITE);  
+  for(int i=1;i<7;i++){
    sprite.drawLine(gx,gy-(i*17),gx+gw,gy-(i*17),grey);
    sprite.drawString(String(yStartTemp+(i*2)),gx-16,gy-(i*17));
   }
@@ -75,8 +76,8 @@ sprite.setTextColor(TFT_BLACK,TFT_WHITE);
   sprite.drawLine(gx,gy,gx,gy-gh,TFT_BLACK);    // Vertical axis line
   
   // Draw the graph  
-  for(int i=0;i<numOfValues;i++){
-    sprite.drawLine(gx+(i*17),gy-(measurmentPoints[i]-yStartTemp)*pixelsPerDegree,gx+((i+1)*17),gy-(measurmentPoints[i+1]-yStartTemp)*pixelsPerDegree,TFT_RED);
+  for(int i=0;i<numOfValues-1;i++){
+    sprite.drawLine(gx+(i*2),gy-(measurmentPoints[i]-yStartTemp)*pixelsPerDegree,gx+((i+1)*2),gy-(measurmentPoints[i+1]-yStartTemp)*pixelsPerDegree,TFT_RED);
   }
   sprite.pushSprite(0,0);
   delay(1000);
