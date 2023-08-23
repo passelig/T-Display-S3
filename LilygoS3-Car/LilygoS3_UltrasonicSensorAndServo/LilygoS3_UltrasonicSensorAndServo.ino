@@ -1,4 +1,4 @@
-#include <Servo.h>
+#include <ESP32Servo.h>
 int trigPin = 12;
 int echoPin = 13;
 int servoPin = 11;
@@ -15,7 +15,7 @@ void setup()
 { 
   pinMode(trigPin,OUTPUT);
   pinMode(echoPin,INPUT);
-  Serial.begin(9600);
+  Serial.begin(115200);
   servoMotor.attach(servoPin, 500, 2500);
   servoMotor.write(straitAhead);
 }
