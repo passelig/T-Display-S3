@@ -1,3 +1,4 @@
+const int startButton = 14;
 const int pwmENAPin = 43;  // Define the GPIO pin for PWM output
 const int pwmENBPin = 16;  // Define the GPIO pin for PWM output
 const int IN1Pin = 44;  // Define the GPIO pins for motor A
@@ -17,17 +18,21 @@ void setup() {
   pinMode(IN4Pin, OUTPUT);
   Serial.begin(9600);
   stop() ;
+  pinMode(startButton, INPUT);
+  delay(200);
+  Serial.println("Waiting for startButton to be pressed...");
+  while (digitalRead(startButton)){};
   delay(delayTime);
 }
 
 void loop() {
- 
   analogWrite(pwmENAPin, pwmSpeed); // 255 = full speed
   analogWrite(pwmENBPin, pwmSpeed); // 255 = full speed
   rightMotorForward();
   delay(delayTime);
   stop();
   rightMotorReverse();
+  Serial.println("Reverse...");
   delay(delayTime);
   stop();
   leftMotorForward();
