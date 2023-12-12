@@ -11,8 +11,8 @@
   #define WIFI_PASSWORD "Hemmelig"
   
   #define INFLUXDB_URL "https://eu-central-1-1.aws.cloud2.influxdata.com"
-  #define INFLUXDB_TOKEN "AQUFQ3fP5PYayjcybomYtjffSTHqS0HhhdF-VrQsoAQU87T3MqytPQjdPdi6HlBDOdMngAkkLpCZShUuCWT4JQ=="
-  #define INFLUXDB_ORG "53ef93bbe4a6eec1"
+  #define INFLUXDB_TOKEN "KJ9p0fA3nAqwnIuvLmt2KQpZtXi42B0SsVF6300H91KL9h3FujetVTL7UaSK7SQvrguKg78MWInQyBTxbKeOAA=="
+  #define INFLUXDB_ORG "ee88c36162f2d933"
   #define INFLUXDB_BUCKET "ArduinoCar"
   
   // Time zone info
