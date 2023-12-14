@@ -33,6 +33,21 @@ void setup() {
 }
 
 void loop() {
+  float distance = ReadDistance();
+    // Prints the distance in the Serial Monitor
+  String message = "Distance : " + String(distance);
+  Serial.println(message);
+  //writeToDisplay(message);
+  delay(500);
+  sprite.fillSprite(TFT_WHITE);
+
+  // Prints the distance on the display
+  sprite.drawString(message,40,60); 
+  sprite.pushSprite(0,0);
+ 
+}
+
+float ReadDistance(){
   // Clears the trigPin
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
@@ -47,13 +62,7 @@ void loop() {
   // Calculate the distance
   distanceCm = duration * SOUND_SPEED/2;
   
-  // Prints the distance in the Serial Monitor
-  String message = "Distance : " + String(distanceCm);
-  Serial.println(message);
-  //writeToDisplay(message);
-  delay(500);
-  sprite.fillSprite(TFT_WHITE);
-  sprite.drawString(message,40,60); 
-  sprite.pushSprite(0,0);
- 
+
+  return distanceCm;
+
 }
